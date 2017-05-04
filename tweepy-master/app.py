@@ -1,3 +1,1 @@
-<body>
-        <h1>Hello world!</h1>
-</body>
+print("hello world!")
