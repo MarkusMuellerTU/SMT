@@ -27,7 +27,7 @@ class listener(StreamListener):
             saveThis = str(time.time())+'::'+tweet
             print (saveThis)
             
-            saveFile = open('twitDB3.txt', 'a')
+            saveFile = open('twitDB4.json', 'a')
             saveFile.write(data)
             saveFile.write('\n')
             saveFile.close()
