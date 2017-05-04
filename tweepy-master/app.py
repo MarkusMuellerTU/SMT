@@ -9,6 +9,7 @@ SMT-Ass2: Differences in nutrition habits between Austria/Germany and the USA
 from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
+from tweepy import TweepError
 import time
 
 ckey = 'S3q10QInGFuQcvYRgNJx5AZWD'
@@ -39,7 +40,14 @@ class listener(StreamListener):
     def on_error(self, status):
         print (status)
         
-auth = OAuthHandler(ckey, csecret)
-auth.set_access_token(atoken, asecret)
-twitterStream = Stream(auth, listener())
-twitterStream.filter(track=["#food", "#foodporn"])
+def stream():
+    try:
+        auth = OAuthHandler(ckey, csecret)
+        auth.set_access_token(atoken, asecret)
+        twitterStream = Stream(auth, listener())
+        twitterStream.filter(track=["#food", "#foodporn"])
+    except TweepError as e:
+        print('tweep error: ', str(e))
+        
+while True:
+    stream()
