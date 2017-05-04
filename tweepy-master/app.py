@@ -22,12 +22,13 @@ class listener(StreamListener):
             #print (data)
             
             tweet = data.split(',"text":"')[1].split('"source')[0]
-            print (tweet)
+            #print (tweet)
             
             saveThis = str(time.time())+'::'+tweet
+            print (saveThis)
             
             saveFile = open('twitDB3.txt', 'a')
-            saveFile.write(saveThis)
+            saveFile.write(data)
             saveFile.write('\n')
             saveFile.close()
             return True
@@ -38,7 +39,11 @@ class listener(StreamListener):
     def on_error(self, status):
         print (status)
         
-auth = OAuthHandler(ckey, csecret)
-auth.set_access_token(atoken, asecret)
-twitterStream = Stream(auth, listener())
-twitterStream.filter(track=["#food", "#foodporn"])
+try:
+    auth = OAuthHandler(ckey, csecret)
+    auth.set_access_token(atoken, asecret)
+    twitterStream = Stream(auth, listener())
+    twitterStream.filter(track=["#food", "#foodporn"])
+except BaseException as e:
+    print ('failed on filter', str(e))
+    time.sleep(5)
