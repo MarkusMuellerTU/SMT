@@ -39,11 +39,7 @@ class listener(StreamListener):
     def on_error(self, status):
         print (status)
         
-try:
-    auth = OAuthHandler(ckey, csecret)
-    auth.set_access_token(atoken, asecret)
-    twitterStream = Stream(auth, listener())
-    twitterStream.filter(track=["#food", "#foodporn"])
-except BaseException as e:
-    print ('failed on filter', str(e))
-    time.sleep(5)
+auth = OAuthHandler(ckey, csecret)
+auth.set_access_token(atoken, asecret)
+twitterStream = Stream(auth, listener())
+twitterStream.filter(track=["#food", "#foodporn"])
