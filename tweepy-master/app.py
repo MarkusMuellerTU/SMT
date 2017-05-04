@@ -27,7 +27,7 @@ class listener(StreamListener):
             saveThis = str(time.time())+'::'+tweet
             
             saveFile = open('twitDB3.txt', 'a')
-            saveFile.write(data)
+            saveFile.write(saveThis)
             saveFile.write('\n')
             saveFile.close()
             return True
