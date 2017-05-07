@@ -15,7 +15,7 @@ from tweepy import TweepError
 
 import time
 from datetime import datetime, timedelta
-import jsonpickle
+#import jsonpickle
 import json
 
 ckey = '6IdDhRCLKr9gUBQ50NHVciiHw'
@@ -97,7 +97,7 @@ def stream(N):
                 tweetCount = 0
                 for tweet in limitHandled(Cursor(api.search, q=query, since=d_since.strftime("%Y-%m-%d"), until=d_until.strftime("%Y-%m-%d"), lang='en').items()):
                     if tweet.place is not None:
-                        saveFile.write(jsonpickle.encode(tweet._json, unpicklable=False) + '\n')
+                        #saveFile.write(jsonpickle.encode(tweet._json, unpicklable=False) + '\n')
                         tweetCount += 1
                         maxTweetCount += 1
                 print("Downloaded {0} tweets for Q{1}. since {2} until {3}".format(tweetCount, idx, d_since.strftime("%Y-%m-%d"), d_until.strftime("%Y-%m-%d")))
